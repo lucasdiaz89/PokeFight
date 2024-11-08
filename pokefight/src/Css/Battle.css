@@ -1,0 +1,19 @@
+.Battle-bodyCars {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 0;
+}
+
+.Battle-bodybox {
+  padding: 5px 0;
+  padding-left: 5%;
+  padding-right: 10%;
+}
+
+.Battle-bodyBtn {
+  padding: 5px 0;
+  padding-left: 45%;
+  width: 55px;
+  padding-right: 10%;
+}
