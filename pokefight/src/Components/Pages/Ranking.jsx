@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setRanking, battlePokemons } from '../../Redux/actions/rankingActions';
 import { Table, TableBody, TableCell, TableHead, TableRow, Button } from '@mui/material';
@@ -6,7 +6,10 @@ import usePokemonData from '../../CustomHook/usePokemonData';
 import PokemonImage from '../PokemonImage';
 import { useNavigate } from 'react-router-dom';
 import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
+import Loading from '../Loading';
 const Ranking = () => {
+
+  const [isLoading, setIsLoading] = useState(true); 
 
   const dispatch = useDispatch();
   const ranking = useSelector(state => state.ranking.ranking);
@@ -45,13 +48,21 @@ const Ranking = () => {
     }
   }, [dispatch, ranking, randomPokemonData, loading, error]);
 
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      setIsLoading(false);
+    }, 2000); 
+
+    return () => clearTimeout(timeoutId); 
+  }, [loading]);
+  
   const handleBattle = (currentId, previousId) => {
     dispatch(battlePokemons(currentId, previousId));
     navigate(`/battle/${currentId}/${previousId}`);
   };
 
 
-  if (loading) return <div>Loading ranking...</div>;
+  if (isLoading) return <div><Loading/></div>;
   if (error) return <div>Error: {error.message}</div>;
 
   return (

@@ -1,0 +1,30 @@
+.loader-container {
+  display: flex;
+  flex-direction: column; /* Asegura que los elementos estén apilados verticalmente */
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  font-family: sans-serif;
+}
+
+.pokemon-image-large {
+  width: 350px;
+  height: 350px;
+  object-fit: cover;
+  margin-bottom: 2%; /* Espacio entre la imagen y el texto */
+}
+
+.loading-text {
+  font-size: 60px;
+}
+
+.dots {
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0% { opacity: 0; }
+  50% { opacity: 1; }
+  100% { opacity: 0; }
+}

@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
-import { Box, Grid2, TextField, Button, CircularProgress } from '@mui/material';
+import React, { useEffect, useState } from 'react';
+import { Box, Grid2, TextField, Button } from '@mui/material';
 import usePokemonData from '../../CustomHook/usePokemonData';
 import RenderPokemonCard from '../RenderPokemonCard';
+import Loading from '../Loading';
 
 
 
@@ -9,8 +10,8 @@ import RenderPokemonCard from '../RenderPokemonCard';
 const SearchPage = () => {
   const [inputValue, setInputValue] = useState('');
   const [query, setQuery] = useState('');
-  const [triggerSearch, setTriggerSearch] = useState(true);
-  
+  const [triggerSearch, setTriggerSearch] = useState(true);  
+  const [isLoading, setIsLoading] = useState(true); 
   const { data: pokemonData, loading, error } = usePokemonData(query, triggerSearch);
 
   const handleInputChange = (event) => {
@@ -26,14 +27,20 @@ const SearchPage = () => {
     }
   };
 
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      setIsLoading(false);
+    }, 700); 
 
+    return () => clearTimeout(timeoutId); 
+  }, [loading]);
+  
   if (error) {
     return <div>Error: {error.message}</div>;
   }
 
-  if (loading) {
-    return <CircularProgress />;
-  }
+  
+  if (isLoading) return <div><Loading/></div>;
 
   return (
     <Box sx={{ padding: 2 }}>

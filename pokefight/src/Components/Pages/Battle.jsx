@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {  Button, Grid2, Box } from '@mui/material';
 import { useDispatch } from 'react-redux';
 import { updateRanking } from '../../Redux/actions/rankingActions';
@@ -6,12 +6,13 @@ import { useParams } from 'react-router-dom';
 import usePokemonData from '../../CustomHook/usePokemonData';
 import RenderPokemonCard from '../RenderPokemonCard';
 import '../../Css/Battle.css';
+import Loading from '../Loading';
 
 const Battle = () => {
   const { pokemon1, pokemon2 } = useParams();
   const [results, setResults] = useState([]);
   const dispatch = useDispatch();
-
+  const [isLoading, setIsLoading] = useState(true); 
   const { data: pokemonData1, loading: loading1, error: error1 } = usePokemonData(pokemon1, false);
   const { data: pokemonData2, loading: loading2, error: error2 } = usePokemonData(pokemon2, false);
 
@@ -53,8 +54,15 @@ const Battle = () => {
     }
     return results;
   };
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      setIsLoading(false);
+    }, 500); 
 
-  if (loading1 || loading2) return <div>Loading...</div>;
+    return () => clearTimeout(timeoutId); 
+  }, [loading1,loading2]);
+  
+  if (isLoading) return <div><Loading/></div>;
   if (error1 || error2) return <div>Error: {error1.message} {error2.message}</div>;
   if (!pokemonData1 || !pokemonData2) return <div>ERROR.</div>;
 
