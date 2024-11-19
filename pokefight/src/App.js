@@ -1,11 +1,11 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import NavBar from './Components/NavBar';
-import Ranking from './Components/Pages/Ranking';
-import SearchPokemon from './Components/Pages/SearchPokemon';
-import Battle from './Components/Pages/Battle';
-import Favorites from './Components/Pages/Favorites';
-import './Css/App.css';
+import NavBar from './components/NavBar';
+import Ranking from './pages/Ranking';
+import SearchPokemon from './pages/SearchPokemon';
+import Battle from './pages/Battle';
+import Favorites from './pages/Favorites';
+import './styles/App.css';
 
 
 const App = () => {

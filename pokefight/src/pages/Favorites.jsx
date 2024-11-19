@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Grid2 } from '@mui/material';
-import RenderPokemonCard from '../RenderPokemonCard'; 
+import RenderPokemonCard from '../components/RenderPokemonCard'; 
 
 const Favorites = () => {
   const favorites = useSelector(state => state.favorites.favorites);

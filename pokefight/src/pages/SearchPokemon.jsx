@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Box, Grid2, TextField, Button } from '@mui/material';
-import usePokemonData from '../../CustomHook/usePokemonData';
-import RenderPokemonCard from '../RenderPokemonCard';
-import Loading from '../Loading';
+import usePokemonData from '../customshook/usePokemonData';
+import RenderPokemonCard from '../components/RenderPokemonCard';
+import Loading from '../components/Loading';
 
 
 

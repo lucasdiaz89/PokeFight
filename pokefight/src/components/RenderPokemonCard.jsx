@@ -3,10 +3,10 @@ import { Box, Card, CardContent, Typography, Button, CardActions } from '@mui/ma
 import PokemonImage from "./PokemonImage";
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import SportsKabaddiIcon from '@mui/icons-material/SportsKabaddi';
-import { addToFavorites, removeFromFavorites } from '../Redux/actions/favoriteActions';
-import { isFavorite } from '../Redux/selectors/favoriteSelectors';
+import { addToFavorites, removeFromFavorites } from '../redux/actions/favoriteActions';
+import { isFavorite } from '../redux/selectors/favoriteSelectors';
 import { useDispatch, useSelector } from 'react-redux';
-import { setRanking } from '../Redux/actions/rankingActions';
+import { setRanking } from '../redux/actions/rankingActions';
 import { useNavigate } from 'react-router-dom';
 
 

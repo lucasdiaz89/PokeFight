@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import {  Button, Grid2, Box } from '@mui/material';
 import { useDispatch } from 'react-redux';
-import { updateRanking } from '../../Redux/actions/rankingActions';
+import { updateRanking } from '../redux/actions/rankingActions';
 import { useParams } from 'react-router-dom';
-import usePokemonData from '../../CustomHook/usePokemonData';
-import RenderPokemonCard from '../RenderPokemonCard';
-import '../../Css/Battle.css';
-import Loading from '../Loading';
+import usePokemonData from '../customshook/usePokemonData';
+import RenderPokemonCard from '../components/RenderPokemonCard';
+import '../styles/Battle.css';
+import Loading from '../components/Loading';
 
 const Battle = () => {
   const { pokemon1, pokemon2 } = useParams();

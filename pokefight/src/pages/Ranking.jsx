@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setRanking, battlePokemons } from '../../Redux/actions/rankingActions';
+import { setRanking, battlePokemons } from '../redux/actions/rankingActions';
 import { Table, TableBody, TableCell, TableHead, TableRow, Button } from '@mui/material';
-import usePokemonData from '../../CustomHook/usePokemonData';
-import PokemonImage from '../PokemonImage';
+import usePokemonData from '../customshook/usePokemonData';
+import PokemonImage from '../components/PokemonImage';
 import { useNavigate } from 'react-router-dom';
 import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
-import Loading from '../Loading';
+import Loading from '../components/Loading';
 const Ranking = () => {
 
   const [isLoading, setIsLoading] = useState(true); 

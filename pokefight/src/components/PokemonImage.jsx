@@ -1,6 +1,6 @@
 import React from 'react';
-import defaultImage from '../Images/Not_Found.png';
-import '../Css/PokemonImage.css';
+import defaultImage from '../assets/images/Not_Found.png';
+import '../styles/PokemonImage.css';
 
 
 const PokemonImage = ({ url, className, size = 'medium' }) => {

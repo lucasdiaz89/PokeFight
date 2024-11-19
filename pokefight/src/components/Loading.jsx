@@ -1,6 +1,6 @@
 import React from 'react';
-import '../Css/Loading.css'; 
-import loadingImage from '../Images/pokeLoading3.png';
+import '../styles/Loading.css'; 
+import loadingImage from '../assets/images/pokeLoading3.png';
 
 function Loading() {
   return (
