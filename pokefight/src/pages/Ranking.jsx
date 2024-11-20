@@ -2,11 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setRanking, battlePokemons } from '../redux/actions/rankingActions';
 import { Table, TableBody, TableCell, TableHead, TableRow, Button } from '@mui/material';
-import usePokemonData from '../customshook/usePokemonData';
+import usePokemonSearch from '../customshook/usePokemonSearch';
 import PokemonImage from '../components/PokemonImage';
 import { useNavigate } from 'react-router-dom';
 import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
 import Loading from '../components/Loading';
+import Error from '../components/Error';
 const Ranking = () => {
 
   const [isLoading, setIsLoading] = useState(true); 
@@ -32,7 +33,7 @@ const Ranking = () => {
         return "";
     }
   };
-  const { data: randomPokemonData, loading, error } = usePokemonData(null, true);
+  const { data: randomPokemonData, loading, error } = usePokemonSearch(null, true);
 
   useEffect(() => {
     if (!loading && !error && randomPokemonData && ranking.length < 10) {
@@ -63,7 +64,7 @@ const Ranking = () => {
 
 
   if (isLoading) return <div><Loading/></div>;
-  if (error) return <div>Error: {error.message}</div>;
+  if (error) return <Error />;
 
   return (
     <Table>

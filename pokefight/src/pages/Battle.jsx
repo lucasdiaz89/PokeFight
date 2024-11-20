@@ -3,10 +3,11 @@ import {  Button, Grid2, Box } from '@mui/material';
 import { useDispatch } from 'react-redux';
 import { updateRanking } from '../redux/actions/rankingActions';
 import { useParams } from 'react-router-dom';
-import usePokemonData from '../customshook/usePokemonData';
+import usePokemonData from '../customshook/usePokemonSearch';
 import RenderPokemonCard from '../components/RenderPokemonCard';
 import '../styles/Battle.css';
 import Loading from '../components/Loading';
+import Error from '../components/Error';
 
 const Battle = () => {
   const { pokemon1, pokemon2 } = useParams();
@@ -63,8 +64,8 @@ const Battle = () => {
   }, [loading1,loading2]);
   
   if (isLoading) return <div><Loading/></div>;
-  if (error1 || error2) return <div>Error: {error1.message} {error2.message}</div>;
-  if (!pokemonData1 || !pokemonData2) return <div>ERROR.</div>;
+  if (error1 || error2 || !pokemonData1 || !pokemonData2) return <Error />;;
+  
 
   return (
     <div>

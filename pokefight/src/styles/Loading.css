@@ -1,6 +1,6 @@
 .loader-container {
   display: flex;
-  flex-direction: column; /* Asegura que los elementos estén apilados verticalmente */
+  flex-direction: column; 
   justify-content: center;
   align-items: center;
   height: 100vh;
@@ -12,7 +12,7 @@
   width: 350px;
   height: 350px;
   object-fit: cover;
-  margin-bottom: 2%; /* Espacio entre la imagen y el texto */
+  margin-bottom: 2%;
 }
 
 .loading-text {

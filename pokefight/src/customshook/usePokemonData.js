@@ -1,27 +1,20 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const usePokemonData = (idOrName, isRandomList = false) => {
+const usePokemonData = (offset, limit = 10) => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const url1 = "https://pokeapi.co/api/v2/pokemon/";
+  const baseUrl = 'https://pokeapi.co/api/v2/pokemon?';
+
   useEffect(() => {
     const fetchData = async () => {
       try {
         setLoading(true);
-        let response; 
-        if (isRandomList) {
-          const randomIds = Array.from({ length: 10 }, () => Math.floor(Math.random() * 1024) + 1);
-          
-          const promises = randomIds.map(id => axios.get(`${url1}${id}`));
-          const results = await Promise.all(promises);
-          setData(results.map(res => res.data));
-        } else {
-          response = await axios.get(`${url1}${idOrName}`);
-        
-          setData(response.data);
-        }
+        const response = await axios.get(`${baseUrl}offset=${offset}&limit=${limit}`);
+        const pokemonUrls = response.data.results.map(result => result.url);
+        const pokemonData = await Promise.all(pokemonUrls.map(url => axios.get(url)));
+        setData(pokemonData.map(res => res.data));
       } catch (error) {
         setError(error);
       } finally {
@@ -29,11 +22,10 @@ const usePokemonData = (idOrName, isRandomList = false) => {
       }
     };
 
-    if (url1) {
+    if (offset >= 0) {
       fetchData();
     }
-  }, [url1, idOrName, isRandomList]); 
-
+  }, [offset, limit]);
   return { data, loading, error };
 };
 
